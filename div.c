@@ -8,22 +8,34 @@
 
 void sta_div(stack_t **stack, unsigned int line_num)
 {
-        int result;
+	stack_t *h;
+	int len = 0, aux;
 
-        if (!stack || !*stack || !((*stack)->next))
-        {
-                fprintf(stderr, "L%d: can't div, stack too short\n", line_num);
-                status = EXIT_FAILURE;
-                return;
-        }
-        if (((*stack)->n) == 0)
-        {
-                fprintf(stderr, "L%d: division by zero\n", line_num);
-                status = EXIT_FAILURE;
-                return;
-        }
-
-        result = ((*stack)->next->n) / ((*stack)->n);
-        pop(stack, line_num);
-        (*stack)->n = result;
+	h = *head;
+	while (h)
+	{
+		h = h->next;
+		len++;
+	}
+	if (len < 2)
+	{
+		fprintf(stderr, "L%d: can't div, stack too short\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
+		exit(EXIT_FAILURE);
+	}
+	h = *head;
+	if (h->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
+		exit(EXIT_FAILURE);
+	}
+	aux = h->next->n / h->n;
+	h->next->n = aux;
+	*head = h->next;
+	free(h);
 }
