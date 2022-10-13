@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
- * sta_div - divides the next top value by the top
+ * f_div - divides the next top value by the top
  * @stack: head of LL
  * @line_num: line indexer
  */
 
-void sta_div(stack_t **stack, unsigned int line_num)
+void f_div(stack_t **head, unsigned int counter)
 {
 	stack_t *h;
 	int len = 0, aux;

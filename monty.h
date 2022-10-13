@@ -69,6 +69,6 @@ stack_t *add_node(int n);
 stack_t *queue_node(stack_t **stack, const int n);
 void sta_div(stack_t **stack, unsigned int line_num);
 void sta_add(stack_t **stack, unsigned int line_num);
-
+void f_div(stack_t **head, unsigned int counter);
 
 #endif
